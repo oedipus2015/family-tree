@@ -36,7 +36,7 @@ function toNum(v) {
 // 自動CSV読み込み
 // ==========================
 window.addEventListener("DOMContentLoaded", () => {
-    loadCSV("a.csv");
+    loadCSV("a.csv?v=" + new Date().getTime());
 });
 
 function loadCSV(path) {
