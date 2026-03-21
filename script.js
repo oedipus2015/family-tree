@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
-        orientation: FamilyTree.orientation.top,
 
         nodeBinding: {
           field_0: "name",
