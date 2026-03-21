@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return {
           id: id,
-          fid: fid, // ←ここが最重要修正
+          pid: fid, // ←ここが最重要修正
 
           name: row.name || "",
           desc: row.desc || ""
