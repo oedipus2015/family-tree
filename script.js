@@ -67,9 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ★ chart.on はここで使える
             chart.on('nodeClick', function (sender, args) {
-
-                const n = args.node;
-
+            
+                const n = args.data;   // ← ここが重要！
+            
                 const html = `
                     <div class="popup">
                         <img src="${n.img}" class="popup-img">
@@ -78,10 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button onclick="document.querySelector('.popup').remove()">閉じる</button>
                     </div>
                 `;
-
+            
                 const old = document.querySelector('.popup');
                 if (old) old.remove();
-
+            
                 document.body.insertAdjacentHTML('beforeend', html);
             });
 
