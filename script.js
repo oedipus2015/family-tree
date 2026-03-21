@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // ★ここを強化（原因対策）
         const id = Number(row.id.trim());
-        const father = row.father.trim();
+        const pid = row.father ? parseInt(row.father) : null;
 
         const pid = father !== "" ? Number(father) : null;
 
