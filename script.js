@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // ★ chart.on はここで使える
-            chart.on('click', function (sender, args) {
+            chart.on('nodeClick', function (sender, args) {
 
                 const n = args.node;
 
