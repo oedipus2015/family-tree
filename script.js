@@ -39,67 +39,59 @@ document.addEventListener("DOMContentLoaded", () => {
                     row[h.trim()] = cols[i] ? cols[i].trim() : "";
                 });
 
-            const id = Number(row.id);
-            const pid = row.father ? Number(row.father) : null;
-            
-            return {
-                id: id,
-                pid: pid,          // ← ★ row.pid を作った
-                name: row.name || "",
-                title: row.desc || "",
-                desc: row.desc || "",
-                img: row.img || ""
-            };
+                // id と pid（親ID）
+                const id = Number(row.id);
+                const pid = row.pid ? Number(row.pid) : null;
+
+                return {
+                    id: id,
+                    pid: pid,
+                    name: row.name || "",
+                    title: row.title || "",
+                    img: row.img || ""
+                };
             });
 
-            // ★ OrgChart を変数 chart に入れる
+            // OrgChart 初期化
             var chart = new OrgChart(document.getElementById("tree"), {
                 template: "john",
                 enableSearch: false,
-            
-            nodeBinding: {
-                field_0: "name",
-                field_1: "title",
-                img_0: "img"
-            }
 
-            
+                nodeBinding: {
+                    field_0: "name",
+                    field_1: "title",
+                    img_0: "img"
+                },
+
                 nodes: nodes
             });
 
-
-            // ★ chart.on はここで使える
+            // クリックイベント
             chart.on('click', function (sender, args) {
-            
-                console.log("CLICK EVENT:", args);   // ← ★ ここ！
+
+                console.log("CLICK EVENT:", args);
                 console.log("NODE:", args.node);
                 console.log("NODE.DATA:", args.node?.data);
-                console.log("NODE._DATA:", args.node?._data);
                 console.log("NODE.RECORD:", args.node?.record);
-                console.log("NODE.TAGS:", args.node?.tags);
-                console.log("NODE.PROPS:", args.node?.props);
 
-
-            
                 if (!args || !args.node || !args.node.data) return;
-            
+
                 const n = args.node.data;
-            
+
                 const html = `
                     <div class="popup">
                         <img src="${n.img}" class="popup-img">
                         <h2>${n.name}</h2>
-                        <p>${n.desc}</p>
+                        <p>${n.title}</p>
                         <button onclick="document.querySelector('.popup').remove()">閉じる</button>
                     </div>
                 `;
-            
+
                 const old = document.querySelector('.popup');
                 if (old) old.remove();
-            
+
                 document.body.insertAdjacentHTML('beforeend', html);
             });
-
 
         });
 
