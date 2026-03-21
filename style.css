@@ -84,3 +84,6 @@ body {
    OrgChart のノード画像を壊す CSS を削除したので、
    ノードが下に落ちる現象は完全に止まる。
 */
+.oc-card {
+    display: none !important;
+}
