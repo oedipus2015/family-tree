@@ -78,27 +78,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id = args?.node?.id;
                 if (!id) return;
             
-                const n = myData[id];   // ← ここでデータ取得
+                const n = myData[id];
                 if (!n) return;
             
-                console.log("CLICK EVENT:", args);
-                console.log("NODE ID:", id);
-                console.log("MY DATA:", n);
+                // パネルにデータを入れる
+                document.getElementById("panel-img").src = n.img;
+                document.getElementById("panel-name").textContent = n.name;
+                document.getElementById("panel-title").textContent = n.title;
             
-                const html = `
-                    <div class="popup">
-                        <img src="${n.img}" class="popup-img">
-                        <h2>${n.name}</h2>
-                        <p>${n.title}</p>
-                        <button onclick="document.querySelector('.popup').remove()">閉じる</button>
-                    </div>
-                `;
-            
-                const old = document.querySelector('.popup');
-                if (old) old.remove();
-            
-                document.body.insertAdjacentHTML('beforeend', html);
+                // パネルを表示
+                document.getElementById("side-panel").classList.remove("hidden");
             });
+            
+            // 閉じる関数
+            function hidePanel() {
+                document.getElementById("side-panel").classList.add("hidden");
+            }
+
 
 
         });
