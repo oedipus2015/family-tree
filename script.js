@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // ★ OrgChart 初期化（最小構成）
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
-                enableSearch: false,
-                nodeMenu: false,
-                collapse: { level: 1 },
+                //enableSearch: false,
+                //nodeMenu: false,
+                //collapse: { level: 1 },
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
