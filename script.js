@@ -66,9 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // ★ chart.on はここで使える
-            chart.on('nodeClick', function (sender, args) {
-                console.log("CLICK EVENT:", args);
-                // ★ nodeClick は必ず args.node がある
+            chart.on('click', function (sender, args) {
+            
+                console.log("CLICK EVENT:", args);   // ← ★ ここ！
+            
+                if (!args || !args.node || !args.node.data) return;
+            
                 const n = args.node.data;
             
                 const html = `
