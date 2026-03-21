@@ -66,9 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // ★ chart.on はここで使える
-            chart.on('click', ...)
+            chart.on('click', function (sender, args) {
             
-                const n = args.data;   // ← ここが重要！
+                const n = args.data;
             
                 const html = `
                     <div class="popup">
