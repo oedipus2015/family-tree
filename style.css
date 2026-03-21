@@ -49,11 +49,11 @@ body {
     overflow-y: auto;
     z-index: 9999;
     transition: transform 0.3s ease;
-    transform: translateX(0); /* ← 初期状態は表示位置 */
+    transform: translateX(0);
 }
 
 .side-panel.hidden {
-    transform: translateX(100%); /* ← 隠すときだけ右に飛ばす */
+    transform: translateX(100%);
 }
 
 .side-panel:not(.hidden) {
