@@ -117,31 +117,6 @@ function parseCSV(csv) {
     // ==========================
     // テンプレート
     // ==========================
-    FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.olivia);
-
-    FamilyTree.templates.myTemplate.size = [250, 160];
-
-    FamilyTree.templates.myTemplate.node =
-        '<rect x="0" y="0" width="250" height="160" fill="#ffffff" stroke="#333" rx="10" ry="10"></rect>';
-
-    FamilyTree.templates.myTemplate.img_0 =
-        `
-        <clipPath id="circleClip">
-            <circle cx="125" cy="50" r="32"></circle>
-        </clipPath>
-
-        <image x="93" y="18"
-               width="64" height="64"
-               href="{val}"
-               preserveAspectRatio="xMidYMid slice"
-               clip-path="url(#circleClip)">
-        `;
-
-    FamilyTree.templates.myTemplate.field_1 =
-        '<text x="125" y="115" text-anchor="middle" style="font-size:18px;font-weight:bold;">{val}</text>';
-
-    FamilyTree.templates.myTemplate.field_0 =
-        '<text x="125" y="135" text-anchor="middle" style="font-size:12px;fill:#999;">{val}</text>';
 
     // ==========================
     // 描画
