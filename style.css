@@ -56,10 +56,6 @@ body {
     transform: translateX(100%);
 }
 
-.side-panel:not(.hidden) {
-    transform: translateX(0);
-}
-
 .panel-img {
     width: 120px;      /* 好きなサイズに調整できる */
     height: 120px;
