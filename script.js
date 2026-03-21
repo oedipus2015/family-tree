@@ -1,26 +1,3 @@
-// CSV 1行をパースする関数（カンマとダブルクォート対応）
-function parseCSVLine(line) {
-    const result = [];
-    let current = "";
-    let inQuotes = false;
-
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-
-        if (char === '"') {
-            inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-            result.push(current);
-            current = "";
-        } else {
-            current += char;
-        }
-    }
-
-    result.push(current);
-    return result;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
 
     fetch("a.csv")
@@ -30,42 +7,37 @@ document.addEventListener("DOMContentLoaded", () => {
             const lines = text.trim().split(/\r?\n/);
             const headers = lines[0].split(",");
 
-            // ★ ここで myData を作る
             const myData = {};
+            const nodes = [];
 
-            let nodes = lines.slice(1).map(line => {
-
-                const cols = parseCSVLine(line);
+            for (let i = 1; i < lines.length; i++) {
+                const cols = lines[i].split(",");
 
                 let row = {};
-                headers.forEach((h, i) => {
-                    row[h.trim()] = cols[i] ? cols[i].trim() : "";
+                headers.forEach((h, idx) => {
+                    row[h.trim()] = cols[idx] ? cols[idx].trim() : "";
                 });
 
-                // id と pid（親ID）
                 const id = Number(row.id);
                 const pid = row.pid ? Number(row.pid) : null;
 
-                // ★ row を保存（クリック時に使う）
                 myData[id] = row;
 
-                return {
+                nodes.push({
                     id: id,
                     pid: pid,
-                    name: row.name || "",
-                    title: row.title || "",
-                    img: row.img || ""
-                };
-            });
+                    name: row.name,
+                    title: row.title,
+                    img: row.img
+                });
+            }
 
-            // OrgChart 初期化
-            var chart = new OrgChart(document.getElementById("tree"), {
+            // ★ OrgChart 初期化（最小構成）
+            const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
                 enableSearch: false,
                 nodeMenu: false,
-                collapse: {
-                    level: 1
-                },
+                collapse: { level: 1 },
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
@@ -74,16 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
 
-            // ★ OrgChart が内部で登録した click を全部削除
+            // ★ 内部イベントを全部消す
             chart.events = {};
 
-            // ★ click を「1つだけ」にまとめる
+            // ★ クリックイベントはこれだけ
             chart.on('click', function (sender, args) {
-                // ノード展開を完全に止める
                 args.cancel = true;
-
-                // ★ Olivia の詳細カードを強制削除
-                document.querySelectorAll(".oc-card").forEach(c => c.remove());
 
                 const id = args?.node?.id;
                 if (!id) return;
@@ -91,20 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const n = myData[id];
                 if (!n) return;
 
-                // パネルにデータを入れる
                 document.getElementById("panel-img").src = n.img;
                 document.getElementById("panel-name").textContent = n.name;
                 document.getElementById("panel-title").textContent = n.title;
 
-                // パネルを表示
                 document.getElementById("side-panel").classList.remove("hidden");
             });
 
         });
-
 });
 
-// グローバルから呼ぶ用
+// ★ パネルを閉じる関数（絶対に動く最小形）
 window.hidePanel = function () {
     document.getElementById("side-panel").classList.add("hidden");
 };
