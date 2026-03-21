@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
             
-            // ★ 家系図を左寄せに強制する
+            // ★ 家系図を左寄せに強制する（iframe なし版 Olivia 対応）
             chart.on('init', function () {
-                const svg = document.querySelector('#tree iframe')?.contentDocument?.querySelector('svg');
-                if (svg) {
-                    svg.style.transform = 'none';
-                    svg.style.marginLeft = '0';
-                }
+                const svg = document.querySelector('#tree svg');
+                if (!svg) return;
+            
+                const groups = svg.querySelectorAll('g');
+                groups.forEach(g => g.removeAttribute('transform'));
             });
             
             // ★ 内部イベントを全部消す ← これが原因なので削除
