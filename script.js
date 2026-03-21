@@ -57,7 +57,5 @@ function parseCSV(csv) {
 	        field_0: "name",
 	        field_1: "title",
 	        img_0: "img"
-	    },
-
-	    layout: FamilyTree.layout.tree
+	    }
 	});
