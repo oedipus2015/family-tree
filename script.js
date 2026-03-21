@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const lines = text.trim().split(/\r?\n/);
       const headers = lines[0].split(",");
 
-      const nodes = lines.slice(1).map(line => {
+      let nodes = lines.slice(1).map(line => {
 
         const cols = line.split(",");
 
@@ -16,22 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
           row[h.trim()] = cols[i] ? cols[i].trim() : "";
         });
 
-        // ★ここだけにする（重複禁止）
         const id = parseInt(row.id);
         const pid = row.father ? parseInt(row.father) : null;
-        
-        console.log("RAW father:", row.father);
-        console.log("PID:", pid);
 
         return {
           id: id,
           pid: pid,
           name: row.name || "",
-          desc: row.desc || "",
-          gender: row.gender || "",
-          img: row.img || ""
+          desc: row.desc || ""
         };
       });
+
+      // ★これが決定打
+      nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
         orientation: FamilyTree.orientation.top,
