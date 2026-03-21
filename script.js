@@ -42,13 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id = Number(row.id);
                 const pid = row.father ? Number(row.father) : null;
 
-                return {
-                    id: id,
-                    pid: pid,
-                    name: row.name || "",
-                    desc: row.desc || "",
-                    img: row.img || ""
-                };
+            return {
+                id: id,
+                pid: pid,
+                name: row.name || "",
+                title: row.desc || "",   // ← ★ desc を title に入れる
+                desc: row.desc || "",
+                img: row.img || ""
+            };
             });
 
             // ★ OrgChart を変数 chart に入れる
