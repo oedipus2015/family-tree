@@ -59,7 +59,4 @@ function parseCSV(csv) {
 	        img_0: "img"
 	    },
 
-	    // 🔥 これ追加！！
-	    layout: FamilyTree.layout.tree,
-	    orientation: FamilyTree.orientation.top
 	});
