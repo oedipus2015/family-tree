@@ -66,12 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // ★ chart.on はここで使える
-            chart.on('click', function (sender, args) {
+            chart.on('nodeClick', function (sender, args) {
             
-                // ★ ノード以外をクリックしたら何もしない
-                if (!args || !args.data) return;
-            
-                const n = args.data;
+                const n = args.node.data;   // ← これが正解！
             
                 const html = `
                     <div class="popup">
