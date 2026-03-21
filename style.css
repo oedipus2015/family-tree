@@ -78,8 +78,12 @@ body {
     font-size: 18px;
 }
 
-.oc-node .oc-image {
-    width: 100px !important;
-    height: 100px !important;
+#tree img,
+.oc-node img,
+.boc-img,
+.oc-img,
+.node-img {
+    width: 80px !important;
+    height: 80px !important;
     object-fit: cover;
 }
