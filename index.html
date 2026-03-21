@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>家系図</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家系図</title>
 
-  <!-- OrgChart はこれ1つでOK（テンプレートも全部内蔵） -->
-  <script src="orgchart_free_2026.js?v=1"></script>
+    <!-- OrgChart の CSS -->
+    <link rel="stylesheet" href="https://balkan.app/js/OrgChart.css">
+
+    <!-- あなたの CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+    <!-- ★ 家系図（OrgChart が描画する場所） -->
     <div id="tree"></div>
 
-    <!-- ★ これが tree の “外” にあることが絶対条件 -->
+    <!-- ★ 右パネル（必ず tree の “外側” に置く） -->
     <div id="side-panel" class="side-panel hidden">
         <button class="close-btn" onclick="hidePanel()">×</button>
-        <img id="panel-img" class="panel-img">
+        <img id="panel-img" class="panel-img" src="">
         <h2 id="panel-name"></h2>
         <p id="panel-title"></p>
     </div>
-<script src="script.js"></script>
+
+    <!-- OrgChart の JS -->
+    <script src="https://balkan.app/js/OrgChart.js"></script>
+
+    <!-- あなたの JS -->
+    <script src="script.js"></script>
+
 </body>
 </html>
