@@ -43,13 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
             
-            // ★ 家系図を左寄せに強制する（iframe なし版 Olivia 対応）
+            // ★ SVG の幅を強制的に #tree に合わせる
             chart.on('init', function () {
                 const svg = document.querySelector('#tree svg');
                 if (!svg) return;
             
-                const groups = svg.querySelectorAll('g');
-                groups.forEach(g => g.removeAttribute('transform'));
+                svg.style.width = '100%';
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.transform = 'none';
             });
             
             // ★ 内部イベントを全部消す ← これが原因なので削除
