@@ -8,3 +8,9 @@
 #side-panel {
     display: none !important;
 }
+
+.oc-title {
+    white-space: normal !important;  /* ← 改行OKにする */
+    line-height: 1.3em;              /* ← 読みやすく */
+    word-break: break-all;           /* ← 長い日本語でも折り返す */
+}
