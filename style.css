@@ -1,33 +1,10 @@
-/* 家系図エリア（#tree）は全画面でOK。右パネルを避ける必要なし */
+/* 家系図エリアだけ残す */
 #tree {
     width: 100% !important;
     height: 100vh !important;
 }
 
-/* 右パネルを家系図の上に重ねる方式 */
+/* 右パネルは使わないので非表示にする */
 #side-panel {
-    position: fixed;      /* ← 最重要：画面に固定して重ねる */
-    top: 0;
-    right: 0;
-    width: 320px;
-    height: 100vh;
-    background: white;
-    z-index: 9999;        /* ← 家系図より上に表示 */
-    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
-    overflow-y: auto;
-}
-
-/* パネルを隠すとき */
-.hidden {
-    display: none;
-}
-
-/* 右パネルの画像サイズを調整 */
-#panel-img {
-    width: 180px;      /* ← 好きなサイズに調整できる */
-    height: auto;
-    display: block;
-    margin: 20px auto;
-    border-radius: 8px; /* 丸みが欲しければ */
-    object-fit: cover;
+    display: none !important;
 }
