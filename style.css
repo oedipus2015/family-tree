@@ -93,4 +93,9 @@ body {
 .oc-node-root {
     display: none !important;
 }
-
+/* ★ Olivia が内部で作る複製ノードを完全に無効化 */
+.oc-node-copy,
+.oc-node.oc-node-copy,
+.oc-node-copy * {
+    display: none !important;
+}
