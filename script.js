@@ -62,13 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
             var chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
                 enableSearch: false,
-
+                nodeMenu: false,   // ★ 標準ポップアップを無効化
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
                     img_0: "img"
                 },
-
                 nodes: nodes
             });
 
