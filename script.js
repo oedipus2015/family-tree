@@ -61,10 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
-        template: "john",
+        template: "john",   // ← これを最初に書く！
       
-        // ★ これを template の直後に置くと縦並びになる
-        orientation: FamilyTree.orientation.top,
+        orientation: FamilyTree.orientation.top,  // ← これがテンプレートを上書きする
       
         layout: FamilyTree.layout.normal,
       
