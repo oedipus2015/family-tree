@@ -74,13 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ★ クリックイベント（myData を使う）
             chart.on('click', function (sender, args) {
-
+            
                 const id = args?.node?.id;
                 if (!id) return;
-
+            
                 const n = myData[id];   // ← ここでデータ取得
                 if (!n) return;
-
+            
+                // ★ ここで console に全部出す
+                console.log("CLICK EVENT:", args);
+                console.log("NODE ID:", id);
+                console.log("MY DATA:", n);
+            
                 const html = `
                     <div class="popup">
                         <img src="${n.img}" class="popup-img">
@@ -89,10 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button onclick="document.querySelector('.popup').remove()">閉じる</button>
                     </div>
                 `;
-
+            
                 const old = document.querySelector('.popup');
                 if (old) old.remove();
-
+            
                 document.body.insertAdjacentHTML('beforeend', html);
             });
 
