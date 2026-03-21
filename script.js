@@ -99,7 +99,7 @@ function parseCSV(csv) {
 
 		// 父だけで構築
 		if (father) {
-		    node.pids = [father];
+		    node.pid = father;
 		}
 
 		log("node: " + JSON.stringify(node));
@@ -146,20 +146,23 @@ function parseCSV(csv) {
     // ==========================
     // 描画
     // ==========================
-    const tree = new FamilyTree(document.getElementById("tree"), {
-        template: "myTemplate",
-        nodes: nodes,
-        nodeBinding: {
-            field_0: "desc",
-            field_1: "name",
-            img_0: "img"
-        },
+	nodes.sort((a, b) => a.id - b.id);
+
+	const rootIds = nodes.filter(n => !n.pid).map(n => n.id);
+
+	const tree = new FamilyTree(document.getElementById("tree"), {
+	    template: "myTemplate",
+	    nodes: nodes,
+	    roots: rootIds,
+
+	    nodeBinding: {
+	        field_0: "desc",
+	        field_1: "name",
+	        img_0: "img"
+	    },
+
 	    layout: FamilyTree.layout.tree,
 	    orientation: FamilyTree.orientation.top,
-
-	    levelSeparation: 120,
-	    siblingSeparation: 80,
-	    subtreeSeparation: 100,
 
 	    scaleInitial: FamilyTree.match.boundary
 	});
