@@ -65,3 +65,11 @@ body {
 .oc-node-copy * {
     display: none !important;
 }
+
+/* ← この下に追加する！ */
+#tree svg {
+    transform: none !important;
+    margin-left: 0 !important;
+}
+
+
