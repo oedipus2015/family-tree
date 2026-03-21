@@ -87,3 +87,10 @@ body {
 .oc-card {
     display: none !important;
 }
+/* ★ Olivia テンプレートの中央固定ノードを無効化 */
+.oc-node.focused,
+.oc-node.selected,
+.oc-node-root {
+    display: none !important;
+}
+
