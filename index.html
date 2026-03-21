@@ -8,9 +8,20 @@
   <script src="orgchart_free_2026.js?v=1"></script>
 </head>
 <body>
+    <div id="tree"></div>
 
-<div id="tree"></div>
+    <!-- ★ ここに固定パネルを入れる！ -->
+    <div id="side-panel" class="side-panel hidden">
+        <button class="close-btn" onclick="hidePanel()">×</button>
+        <img id="panel-img" class="panel-img">
+        <h2 id="panel-name"></h2>
+        <p id="panel-title"></p>
+    </div>
 
-<script src="script.js"></script>
+    <script src="orgchart_free.js"></script>
+    <script src="script.js"></script>
 </body>
+
+
+
 </html>
