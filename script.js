@@ -1,4 +1,7 @@
+// ★ 既存の click イベントを全部削除（競合を完全に消す）
+document.getElementById("tree").replaceWith(document.getElementById("tree").cloneNode(true));
 // CSV 1行をパースする関数（カンマとダブルクォート対応）
+
 function parseCSVLine(line) {
     const result = [];
     let current = "";
