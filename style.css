@@ -11,36 +11,7 @@ body {
   float: left; /* ← 左側に固定 */
 }
 
-/* 旧ポップアップ（使ってないなら残してOK） */
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 350px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    z-index: 9999;
-}
-
-.popup-img {
-    width: 150px !important;
-    height: auto !important;
-    max-width: 150px !important;
-    display: block;
-    margin: 0 auto 10px;
-    border-radius: 6px;
-    object-fit: cover;
-}
-
-.popup button {
-    margin-top: 10px;
-    padding: 8px 15px;
-}
-
-/* ★ 右パネル（side-panel） */
+/* 右パネル */
 .side-panel {
     position: fixed;
     top: 0;
@@ -57,7 +28,7 @@ body {
     transform: translateX(0);
 }
 
-/* ★ 隠すときだけ右にスライド */
+/* 隠すとき */
 .side-panel.hidden {
     transform: translateX(100%) !important;
 }
@@ -82,21 +53,11 @@ body {
     font-size: 18px;
 }
 
-/* ★★★ Olivia の余計な要素を完全に消す ★★★ */
-
-/* 詳細カード */
-.oc-card {
-    display: none !important;
-}
-
-/* 中央固定ノード */
+/* ★ Olivia の余計な要素を完全に消す */
+.oc-card,
 .oc-node.focused,
 .oc-node.selected,
-.oc-node-root {
-    display: none !important;
-}
-
-/* 複製ノード */
+.oc-node-root,
 .oc-node-copy,
 .oc-node.oc-node-copy,
 .oc-node-copy * {
