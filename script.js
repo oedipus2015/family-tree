@@ -153,7 +153,6 @@ function parseCSV(csv) {
 	const tree = new FamilyTree(document.getElementById("tree"), {
 	    template: "myTemplate",
 	    nodes: nodes,
-	    roots: rootIds,
 
 	    nodeBinding: {
 	        field_0: "desc",
