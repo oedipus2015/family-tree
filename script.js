@@ -154,6 +154,7 @@ function parseCSV(csv) {
             field_1: "name",
             img_0: "img"
         },
+        layout: FamilyTree.layout.tree,
         orientation: FamilyTree.orientation.top,
         scaleInitial: FamilyTree.match.boundary
     });
