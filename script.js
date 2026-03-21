@@ -99,7 +99,7 @@ function parseCSV(csv) {
 
 		// 父だけで構築
 		if (father) {
-		    node.pid = father;
+		    node.pids = [father];
 		}
 
 		log("node: " + JSON.stringify(node));
