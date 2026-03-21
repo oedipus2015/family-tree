@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 //enableSearch: false,
                 //nodeMenu: false,
                 //collapse: { level: 1 },
+                align: OrgChart.ALIGN.LEFT,   // ★ これを追加！
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
