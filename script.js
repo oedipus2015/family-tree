@@ -43,6 +43,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodes: nodes
             });
             
+            // ★ 家系図を左寄せに強制する
+            chart.on('init', function () {
+                const svg = document.querySelector('#tree iframe')?.contentDocument?.querySelector('svg');
+                if (svg) {
+                    svg.style.transform = 'none';
+                    svg.style.marginLeft = '0';
+                }
+            });
+            
             // ★ 内部イベントを全部消す ← これが原因なので削除
             // chart.events = {};
             
