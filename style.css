@@ -1,17 +1,19 @@
 /* 全体 */
 body {
-  margin: 0;
-  font-family: sans-serif;
+    margin: 0;
+    font-family: sans-serif;
 }
 
-/* 家系図エリア（右パネルの幅を避ける） */
+/* ★ 家系図エリア（右パネルの幅を避ける・強制適用） */
 #tree {
-  width: calc(100% - 320px); /* ← 右パネルの幅を避ける */
-  height: 100vh;
-  float: left; /* ← 左側に固定 */
+    width: calc(100% - 320px) !important;  /* ← 右パネルの幅を避ける */
+    height: 100vh !important;
+    float: left !important;
+    position: relative !important;
+    z-index: 1 !important;  /* ← 右パネルより下に配置 */
 }
 
-/* 右パネル */
+/* ★ 右パネル */
 .side-panel {
     position: fixed;
     top: 0;
@@ -23,12 +25,12 @@ body {
     padding: 20px;
     box-shadow: -4px 0 10px rgba(0,0,0,0.1);
     overflow-y: auto;
-    z-index: 9999;
+    z-index: 10;  /* ← tree より上に表示 */
     transition: transform 0.3s ease;
     transform: translateX(0);
 }
 
-/* 隠すとき */
+/* ★ パネルを隠すとき */
 .side-panel.hidden {
     transform: translateX(100%) !important;
 }
