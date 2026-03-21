@@ -32,13 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // ★ OrgChart 初期化（最小構成）
+             // ★ OrgChart 初期化（最小構成）
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
-                //enableSearch: false,
-                //nodeMenu: false,
-                //collapse: { level: 1 },
-                align: OrgChart.ALIGN.LEFT,   // ★ これを追加！
+                align: OrgChart.ALIGN.LEFT,   // ← 左寄せが有効になる
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
@@ -46,24 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 nodes: nodes
             });
-
-            // ★ 内部イベントを全部消す
-            chart.events = {};
-
-            // ★ クリックイベントはこれだけ
+            
+            // ★ 内部イベントを全部消す ← これが原因なので削除
+            // chart.events = {};
+            
+            // ★ クリックイベントだけ追加
             chart.on('click', function (sender, args) {
                 args.cancel = true;
-
+            
                 const id = args?.node?.id;
                 if (!id) return;
-
+            
                 const n = myData[id];
                 if (!n) return;
-
+            
                 document.getElementById("panel-img").src = n.img;
                 document.getElementById("panel-name").textContent = n.name;
                 document.getElementById("panel-title").textContent = n.title;
-
+            
                 document.getElementById("side-panel").classList.remove("hidden");
             });
 
