@@ -77,3 +77,9 @@ body {
     cursor: pointer;
     font-size: 18px;
 }
+
+.oc-node .oc-image {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
+}
