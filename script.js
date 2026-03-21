@@ -63,7 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 template: "olivia",
                 enableSearch: false,
             
-                nodeMenu: false,
+                nodeMenu: {
+                    details: false
+                },
+            
+                collapse: {
+                    level: 1
+                },
             
                 nodeBinding: {
                     field_0: "name",
