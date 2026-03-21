@@ -90,14 +90,9 @@ function parseCSV(csv) {
             title: desc,
             img: img || "img/dummy.jpg"
         };
-
-        // 🔥 ここが最重要
+        
         if (father) {
-            // 子ノード
             node.fid = father;
-            node.mid = 9999;
-        } else {
-            // ルート（父など）
             node.mid = 9999;
         }
 
