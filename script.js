@@ -39,14 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     row[h.trim()] = cols[i] ? cols[i].trim() : "";
                 });
 
-                const id = Number(row.id);
-                const pid = row.father ? Number(row.father) : null;
-
+            const id = Number(row.id);
+            const pid = row.father ? Number(row.father) : null;
+            
             return {
                 id: id,
-                pid: pid,
+                pid: pid,          // ← ★ row.pid を作った
                 name: row.name || "",
-                title: row.desc || "",   // ← ★ desc を title に入れる（必須）
+                title: row.desc || "",
                 desc: row.desc || "",
                 img: row.img || ""
             };
