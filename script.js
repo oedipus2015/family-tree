@@ -1,5 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+  
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+  
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current);
+        current = "";
+      } else {
+        current += char;
+      }
+    }
+  
+    result.push(current);
+    return result;
+  }  
   fetch("a.csv")
     .then(res => res.text())
     .then(text => {
@@ -9,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let nodes = lines.slice(1).map(line => {
 
-        const cols = line.split(",");
+        const cols = parseCSVLine(line);
 
         let row = {};
         headers.forEach((h, i) => {
