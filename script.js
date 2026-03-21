@@ -50,22 +50,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return {
           id: id,
-          pid: fid, // ←ここが最重要修正
+          pid: fid,  // 親ID（最重要）
 
           name: row.name || "",
-          desc: row.desc || ""
+          desc: row.desc || "",
+          img: row.img || ""   // ← 画像を追加
         };
       });
 
       nodes.sort((a, b) => a.id - b.id);
 
       new FamilyTree(document.getElementById("tree"), {
+        template: "john",   // ← 画像対応テンプレート
         orientation: FamilyTree.orientation.top,
         layout: FamilyTree.layout.normal,
 
         nodeBinding: {
           field_0: "name",
-          field_1: "desc"
+          field_1: "desc",
+          img_0: "img"   // ← 画像を表示
         },
 
         nodes: nodes
