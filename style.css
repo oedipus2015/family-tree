@@ -47,13 +47,13 @@ body {
     padding: 20px;
     box-shadow: -4px 0 10px rgba(0,0,0,0.1);
     overflow-y: auto;
-    transition: transform 0.3s ease;
-    transform: translateX(100%);
     z-index: 9999;
+    transition: transform 0.3s ease;
+    transform: translateX(0); /* ← 初期状態は表示位置 */
 }
 
 .side-panel.hidden {
-    transform: translateX(100%);
+    transform: translateX(100%); /* ← 隠すときだけ右に飛ばす */
 }
 
 .side-panel:not(.hidden) {
