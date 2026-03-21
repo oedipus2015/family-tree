@@ -82,3 +82,12 @@ body {
 #tree svg g {
     transform: none !important;
 }
+
+/* ★ OrgChart の中央寄せ transform を完全に無効化する */
+#tree svg,
+#tree svg g,
+#tree svg g g,
+#tree svg g g g {
+    transform: none !important;
+    margin-left: 0 !important;
+}
