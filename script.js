@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
              // ★ OrgChart 初期化（最小構成）
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
-                align: OrgChart.ALIGN.LEFT,   // ← 左寄せが有効になる
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
