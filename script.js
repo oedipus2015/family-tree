@@ -36,7 +36,7 @@ function toNum(v) {
 // 自動CSV読み込み
 // ==========================
 window.addEventListener("DOMContentLoaded", () => {
-    loadCSV("a.csv?v=" + new Date().getTime());
+    loadCSV("a.csv?v=" + Date.now());
 });
 
 function loadCSV(path) {
@@ -53,12 +53,11 @@ function loadCSV(path) {
         })
         .catch(err => {
             log("エラー: " + err.message, "error");
-            console.error(err);
         });
 }
 
 // ==========================
-// CSV解析＆描画
+// CSV解析
 // ==========================
 function parseCSV(csv) {
     const lines = csv.split(/\r?\n/);
@@ -70,18 +69,12 @@ function parseCSV(csv) {
     const spouseMap = {};
 
     dataLines.forEach((line, index) => {
-
-        if (!line.trim()) {
-            log("空行スキップ: " + index, "warn");
-            return;
-        }
+        if (!line.trim()) return;
 
         const cols = line.split(",").map(v => v.trim());
 
-        log("解析: " + JSON.stringify(cols));
-
-        if (cols.length < 8) {
-            log("列不足スキップ: " + line, "warn");
+        if (cols.length < 7) {
+            log("列不足: " + line, "warn");
             return;
         }
 
@@ -89,14 +82,10 @@ function parseCSV(csv) {
         const name = cols[1];
         const desc = cols[2];
         const father = toNum(cols[4]);
-        const mother = toNum(cols[5]);
-        const spouse = toNum(cols[6]);
-        const img = cols[7];
+        const spouse = toNum(cols[5]);
+        const img = cols[6];
 
-        if (!id) {
-            log("ID不正: " + line, "error");
-            return;
-        }
+        if (!id) return;
 
         let node = {
             id: id,
@@ -105,17 +94,11 @@ function parseCSV(csv) {
             img: img || ""
         };
 
-        // 親子関係
-		if (father && mother) {
-		    node.fid = father;
-		    node.mid = mother;
-		} else if (father) {
-		    node.pid = father;
-		} else {
-		    // 親なしでも表示
-		}
+        // 🔥 父だけで構築
+        if (father) {
+            node.pid = father;
+        }
 
-        // 配偶者
         if (spouse) {
             spouseMap[id] = spouse;
         }
@@ -136,71 +119,54 @@ function parseCSV(csv) {
         return;
     }
 
-	// ==========================
-	// 🔥 安全テンプレ（baseから作る）
-	// ==========================
-	FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.base);
-
-	// サイズ
-	FamilyTree.templates.myTemplate.size = [250, 160];
-
-	// 枠（これないと表示されない）
-	FamilyTree.templates.myTemplate.node =
-	    '<rect x="0" y="0" width="250" height="160" fill="#ffffff" stroke="#333" rx="10" ry="10"></rect>';
-
-	// 画像
-	FamilyTree.templates.myTemplate.img_0 =
-	    `
-	    <clipPath id="circleClip">
-	        <circle cx="125" cy="50" r="32"></circle>
-	    </clipPath>
-
-	    <image x="93" y="18"
-	           width="64" height="64"
-	           href="{val}"
-	           preserveAspectRatio="xMidYMid slice"
-	           clip-path="url(#circleClip)">
-	    `;
-
-	// 名前（上）
-	FamilyTree.templates.myTemplate.field_1 =
-	    '<text x="125" y="110" text-anchor="middle" style="font-size:18px;font-weight:bold;">{val}</text>';
-
-	// 説明（下）
-	FamilyTree.templates.myTemplate.field_0 =
-	    '<text x="125" y="130" text-anchor="middle" style="font-size:12px;fill:#666;">{val}</text>';
     // ==========================
-    // 家系図描画
+    // テンプレート
+    // ==========================
+    FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.base);
+
+    FamilyTree.templates.myTemplate.size = [250, 160];
+
+    FamilyTree.templates.myTemplate.node =
+        '<rect x="0" y="0" width="250" height="160" fill="#ffffff" stroke="#333" rx="10" ry="10"></rect>';
+
+    FamilyTree.templates.myTemplate.img_0 =
+        `
+        <clipPath id="circleClip">
+            <circle cx="125" cy="50" r="32"></circle>
+        </clipPath>
+
+        <image x="93" y="18"
+               width="64" height="64"
+               href="{val}"
+               preserveAspectRatio="xMidYMid slice"
+               clip-path="url(#circleClip)">
+        `;
+
+    FamilyTree.templates.myTemplate.field_1 =
+        '<text x="125" y="115" text-anchor="middle" style="font-size:18px;font-weight:bold;">{val}</text>';
+
+    FamilyTree.templates.myTemplate.field_0 =
+        '<text x="125" y="135" text-anchor="middle" style="font-size:12px;fill:#999;">{val}</text>';
+
+    // ==========================
+    // 描画
     // ==========================
     const tree = new FamilyTree(document.getElementById("tree"), {
-    	template: "myTemplate",
+        template: "myTemplate",
         nodes: nodes,
-
         nodeBinding: {
             field_0: "desc",
             field_1: "name",
             img_0: "img"
         },
-
         orientation: FamilyTree.orientation.top,
         scaleInitial: FamilyTree.match.boundary
     });
 
-	// クリックイベント
-	tree.on('click', function(sender, args){
-	    alert(args.node.name + "\n" + args.node.desc);
-	});
+    tree.on('click', function(sender, args){
+        alert(args.node.name + "\n" + args.node.desc);
+    });
 
-	// 👇ここに追加！！
-	tree.on('mouseOver', function(sender, args){
-	    args.node.element.style.transform = "scale(1.1)";
-	});
-
-	tree.on('mouseOut', function(sender, args){
-	    args.node.element.style.transform = "scale(1)";
-	});
-
-    // 表示調整
     setTimeout(() => {
         tree.fit();
         tree.center();
