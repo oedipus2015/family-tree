@@ -62,41 +62,47 @@ function parseCSV(csv) {
 
     const nodes = [];
 
-    // 🔥 ダミー母
+    // 🔥 ダミー母（必須）
     nodes.push({
         id: 9999,
         name: "",
         img: ""
     });
-    
-    dataLines.forEach(line => {
-    
+
+    dataLines.forEach((line, index) => {
+
+        if (!line.trim()) return;
+
         const cols = line.split(",").map(v => v.trim());
-    
+
+        // 列補完
         while (cols.length < 6) cols.push("");
-    
+
         const id = toNum(cols[0]);
         const name = cols[1];
         const desc = cols[2];
         const father = toNum(cols[4]);
         const img = cols[5];
-    
+
         let node = {
             id: id,
             name: name,
             title: desc,
             img: img || "img/dummy.jpg"
         };
-    
+
+        // 🔥 ここが最重要
         if (father) {
-            // 子
+            // 子ノード
             node.fid = father;
             node.mid = 9999;
         } else {
-            // 🔥 ルートもペア化
+            // ルート（父など）
             node.mid = 9999;
         }
-    
+
+        log("node: " + JSON.stringify(node));
+
         nodes.push(node);
     });
 
