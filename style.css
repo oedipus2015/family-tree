@@ -1,93 +1,23 @@
-/* 全体 */
-body {
-    margin: 0;
-    font-family: sans-serif;
-}
-
-/* ★ 家系図エリア（右パネルの幅を避ける・強制適用） */
+/* 家系図エリア（#tree）は全画面でOK。右パネルを避ける必要なし */
 #tree {
-    width: calc(100% - 320px) !important;  /* ← 右パネルの幅を避ける */
+    width: 100% !important;
     height: 100vh !important;
-    float: left !important;
-    position: relative !important;
-    z-index: 1 !important;  /* ← 右パネルより下に配置 */
 }
 
-/* ★ 右パネル */
-.side-panel {
-    position: fixed;
+/* 右パネルを家系図の上に重ねる方式 */
+#side-panel {
+    position: fixed;      /* ← 最重要：画面に固定して重ねる */
     top: 0;
     right: 0;
     width: 320px;
     height: 100vh;
-    background: #fff;
-    border-left: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+    background: white;
+    z-index: 9999;        /* ← 家系図より上に表示 */
+    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
     overflow-y: auto;
-    z-index: 10;  /* ← tree より上に表示 */
-    transition: transform 0.3s ease;
-    transform: translateX(0);
 }
 
-/* ★ パネルを隠すとき */
-.side-panel.hidden {
-    transform: translateX(100%) !important;
-}
-
-/* 右パネルの画像 */
-.panel-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* 閉じるボタン */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: #eee;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-/* ★ Olivia の余計な要素を完全に消す */
-.oc-card,
-.oc-node.focused,
-.oc-node.selected,
-.oc-node-root,
-.oc-node-copy,
-.oc-node.oc-node-copy,
-.oc-node-copy * {
-    display: none !important;
-}
-
-/* ← この下に追加する！ */
-#tree svg {
-    transform: none !important;
-    margin-left: 0 !important;
-}
-
-/* ★ SVG 全体の中央寄せを無効化 */
-#tree svg {
-    transform: none !important;
-    margin-left: 0 !important;
-}
-
-/* ★ SVG 内部の g（グループ）にも transform が入っているので無効化 */
-#tree svg g {
-    transform: none !important;
-}
-
-/* ★ OrgChart の中央寄せ transform を完全に無効化する */
-#tree svg,
-#tree svg g,
-#tree svg g g,
-#tree svg g g g {
-    transform: none !important;
-    margin-left: 0 !important;
+/* パネルを隠すとき */
+.hidden {
+    display: none;
 }
