@@ -55,15 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
             var chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
                 enableSearch: false,
-
+            
                 nodeBinding: {
                     field_0: "name",
-                    field_1: "desc",
+                    field_1: "title",
+                    field_2: "desc",
                     img_0: "img"
                 },
-
+            
                 nodes: nodes
             });
+
 
             // ★ chart.on はここで使える
             chart.on('click', function (sender, args) {
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
                 document.body.insertAdjacentHTML('beforeend', html);
             });
+
 
         });
 
