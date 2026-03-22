@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ★ ノード側の desc を div に変える
             OrgChart.templates.olivia.field_2 =
-                '<div class="oc-desc" style="white-space:pre-wrap;word-break:break-word;">{val}</div>';
+                '<div class="oc-desc" style="white-space:pre-wrap;word-break:break-word;height:60px;overflow:auto;">{val}</div>';
             
             chart.load(nodes);
 
