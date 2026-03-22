@@ -72,6 +72,16 @@
       tr.appendChild(td);
     });
 
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("seiwa-genji.json")
+        .then(res => res.json())
+        .then(data => {
+          tbody.innerHTML = "";
+          data.forEach(item => createRow(item));
+        })
+        .catch(err => console.error("JSON 読み込みエラー:", err));
+    });
+
     const tdDel = document.createElement("td");
     const delBtn = document.createElement("button");
     delBtn.textContent = "削除";
