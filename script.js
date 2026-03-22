@@ -19,13 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     photoBinding: "img"
                 },
 
-                // ★ ノードクリックで右パネルを開く
                 nodeClick: (node) => {
                     showPanel(node);
                 }
             });
 
-            // ★ desc を textarea に変える本命コード（field_2 を上書き！！）
+            // ★ ノード側の desc を textarea に変える
             OrgChart.templates.olivia.field_2 =
                 '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
 
@@ -45,13 +44,12 @@ function showPanel(node) {
     document.getElementById("panel-name").textContent = node.name || "";
     document.getElementById("panel-title").textContent = node.title || "";
 
-    // ★ desc を textarea に入れる（改行OK）
+    // ★ textarea に入れる（改行OK）
     document.getElementById("panel-desc").value = node.desc || "";
 
     document.getElementById("side-panel").classList.remove("hidden");
 }
 
-// ★ 右パネルを閉じる
 function hidePanel() {
     document.getElementById("side-panel").classList.add("hidden");
 }
