@@ -27,15 +27,19 @@ document.addEventListener("DOMContentLoaded", () => {
             // ★ ノード側の desc を textarea に変える
             OrgChart.templates.olivia.field_2 =
                 '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
-
-            // ★ desc の \n を <br> に変換（←ここが重要）
+            
+            // ★ ここでテンプレートの中身を確認
+            console.log("olivia template:", OrgChart.templates.olivia);
+            
+            // ★ desc の \n を <br> に変換
             OrgChart.templates.olivia.field_2 =
                 OrgChart.templates.olivia.field_2.replace(
                     "{val}",
                     "{val}".replace(/\n/g, "<br>")
                 );
-
+            
             chart.load(nodes);
+
 
         })
         .catch(err => {
