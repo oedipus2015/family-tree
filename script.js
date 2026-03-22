@@ -41,6 +41,8 @@ function showPanel(node) {
     document.getElementById("panel-name").textContent = node.name || "";
     document.getElementById("panel-title").textContent = node.title || "";
     document.getElementById("panel-desc").value = node.desc || "";
+        // ★ Wikipedia リンクをセット
+    document.getElementById("panel-wiki").href = node.wiki || "";
     document.getElementById("side-panel").classList.remove("hidden");
 }
 
