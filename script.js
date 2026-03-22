@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
-                    field_2: "desc",
-                    img_0: "img"
+                    img_0: "img",
+                    link: "wiki"
                 },
 
                 editForm: {
@@ -24,8 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            OrgChart.templates.olivia.field_2 =
-                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
+            OrgChart.templates.olivia.link =
+                '<a href="{val}" target="_blank" style="position:absolute;bottom:5px;right:5px;">' +
+                    '<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" style="width:20px;height:20px;">' +
+                '</a>';
             
             chart.load(nodes);
 
