@@ -9,6 +9,13 @@
 #side-panel {
     display: none;
 }
+
+/*imgラベルを消す*/
+#tree .boc-edit-form .boc-field[data-binding="img"] .boc-label {
+    display: none !important;
+}
+
+/*画像のURLを消す*/
 #tree .boc-edit-form input[data-binding="img"] {
     display: none !important;
 }
