@@ -5,10 +5,7 @@
     overflow: hidden;
 }
 
-/* 右パネルは使わないので非表示 */
-#side-panel {
-    display: none;
-}
+
 
 /*imgラベルを消す*/
 #tree .boc-edit-form .boc-input:has(input[data-binding="img"]) label {
