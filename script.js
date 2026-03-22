@@ -6,18 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
-
+            
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
                     img_0: "img",
                     wiki: "wiki"
                 },
-
+            
                 editForm: {
                     readOnly: true,
                     photoBinding: "img",
-
+            
                     buttons: {
                         wiki: {
                             icon: OrgChart.icon.link,
@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         }
                     }
-                },   // ← ★ここにカンマが必要！
-
+                },  // ← ★ここにカンマが必要
+            
                 nodeClick: (node) => {
                     showPanel(node);
-                }
+                }   // ← ★ここはカンマ不要（最後の要素だから）
             });
 
             // ★ ノード側の desc を textarea に戻す
