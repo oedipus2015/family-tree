@@ -14,3 +14,16 @@
 #tree .boc-edit-form input[data-binding="img"] {
     display: none !important;
 }
+
+/*Wikipediaのボタンのため右のパネルを固定する*/
+#side-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: -4px 0 8px rgba(0,0,0,0.1);
+}
