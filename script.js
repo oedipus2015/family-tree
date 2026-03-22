@@ -24,18 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
+            // ★ ノード側の desc を div に変える
             OrgChart.templates.olivia.field_2 =
                 '<div class="oc-desc" style="white-space:pre-wrap;word-break:break-word;">{val}</div>';
-            
-            // ★ ここでテンプレートの中身を確認
-            console.log("olivia template:", OrgChart.templates.olivia);
-            
-            // ★ desc の \n を <br> に変換
-            OrgChart.templates.olivia.field_2 =
-                OrgChart.templates.olivia.field_2.replace(
-                    "{val}",
-                    "{val}".replace(/\n/g, "<br>")
-                );
             
             chart.load(nodes);
 
