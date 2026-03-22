@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             OrgChart.templates.olivia.field_2 =
-                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
+                '<div class="oc-desc" style="white-space:normal;word-break:break-word;height:40px;overflow:hidden;">{val}</div>';
             
             chart.load(nodes);
 
