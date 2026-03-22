@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 editForm: {
                     readOnly: true,
                     photoBinding: "img"
+                },
+
+                // ★ ノードクリックで右パネルを開く
+                nodeClick: (node) => {
+                    showPanel(node);
                 }
             });
 
@@ -32,3 +37,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 });
+
+
+// ★ 右パネル表示
+function showPanel(node) {
+    document.getElementById("panel-img").src = node.img || "";
+    document.getElementById("panel-name").textContent = node.name || "";
+    document.getElementById("panel-title").textContent = node.title || "";
+
+    // ★ desc を textarea に入れる（改行OK）
+    document.getElementById("panel-desc").value = node.desc || "";
+
+    document.getElementById("side-panel").classList.remove("hidden");
+}
+
+// ★ 右パネルを閉じる
+function hidePanel() {
+    document.getElementById("side-panel").classList.add("hidden");
+}
