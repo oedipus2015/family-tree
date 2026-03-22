@@ -14,14 +14,12 @@
     <div id="tree"></div>
 
     <!-- ★ 右パネル -->
-    <div id="side-panel" class="side-panel hidden">
-        <button class="close-btn" onclick="hidePanel()">×</button>
-        <img id="panel-img" class="panel-img" src="">
+    <div id="side-panel" class="hidden">
+        <img id="panel-img" src="" alt="">
         <h2 id="panel-name"></h2>
-        <p id="panel-title"></p>
-
-        <!-- desc を textarea にする！！ -->
-        <textarea id="panel-desc" class="panel-desc" readonly></textarea>
+        <h3 id="panel-title"></h3>
+        <textarea id="panel-desc"></textarea>
+        <button onclick="hidePanel()">閉じる</button>
     </div>
 
     <script src="https://balkan.app/js/OrgChart.js"></script>
