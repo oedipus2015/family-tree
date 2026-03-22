@@ -9,6 +9,6 @@
 #side-panel {
     display: none;
 }
-.edit-form input[data-binding="img"] {
+#tree .boc-edit-form input[data-binding="img"] {
     display: none !important;
 }
