@@ -53,12 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ★ 右パネル表示
 function showPanel(node) {
-    document.getElementById("panel-img").src = node.img || "";
-    document.getElementById("panel-name").textContent = node.name || "";
-    document.getElementById("panel-title").textContent = node.title || "";
-    document.getElementById("panel-desc").value = node.desc || "";
 
-    document.getElementById("side-panel").classList.remove("hidden");
 }
 
 function hidePanel() {
