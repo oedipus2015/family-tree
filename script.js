@@ -14,34 +14,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     wiki: "wiki"
                 },
 
-            editForm: {
-                readOnly: true,
-                photoBinding: "img",
-            
-                buttons: {
-                    wiki: {
-                        icon: OrgChart.icon.link,
-                        text: "Wikipedia",
-                        onClick: function (nodeId) {
-                            const node = chart.get(nodeId);
-                            if (node.wiki) {
-                                window.open(node.wiki, "_blank");
+                editForm: {
+                    readOnly: true,
+                    photoBinding: "img",
+
+                    buttons: {
+                        wiki: {
+                            icon: OrgChart.icon.link,
+                            text: "Wikipedia",
+                            onClick: function (nodeId) {
+                                const node = chart.get(nodeId);
+                                if (node.wiki) {
+                                    window.open(node.wiki, "_blank");
+                                }
                             }
                         }
                     }
-                }
-            },
+                },   // ← ★ここにカンマが必要！
 
                 nodeClick: (node) => {
                     showPanel(node);
                 }
             });
 
+            // ★ ノード側の desc を textarea に戻す
             OrgChart.templates.olivia.field_2 =
                 '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
-            
-            chart.load(nodes);
 
+            chart.load(nodes);
 
         })
         .catch(err => {
