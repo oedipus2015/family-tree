@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(nodes => {
 
-            // ★ OrgChart 初期化（標準ポップアップのみ）
-            new OrgChart(document.getElementById("tree"), {
+            // ★ OrgChart 初期化
+            const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
 
                 nodeBinding: {
@@ -17,12 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
 
                 editForm: {
-                    readOnly: true,     // 編集不可
-                    photoBinding: "img" // 画像を表示
-                },
-
-                nodes: nodes
+                    readOnly: true,
+                    photoBinding: "img"
+                }
             });
+
+            // ★ desc を textarea に変える魔法のコード（ここが超重要！！）
+            OrgChart.templates.olivia.desc =
+                '<textarea class="oc-desc" style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;border:none;background:transparent;" readonly>{val}</textarea>';
+
+            // ★ データ読み込み
+            chart.load(nodes);
 
         })
         .catch(err => {
