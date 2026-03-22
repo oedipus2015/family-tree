@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     field_1: "title",
                     field_2: "desc"
                 },
+                editForm: false,   // ← これで右側のURLが完全に消える！
                 popup: {
                     template: function(node) {
                         return `
