@@ -11,8 +11,7 @@
 }
 
 /*imgラベルを消す*/
-.boc-edit-form .boc-field[data-binding="img"] .boc-label,
-.boc-field[data-binding="img"] .boc-label {
+#tree .boc-edit-form .boc-field[data-binding="img"] label {
     display: none !important;
 }
 
