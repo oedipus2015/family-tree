@@ -11,13 +11,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     field_0: "name",
                     field_1: "title",
                     img_0: "img",
-                    link: "wiki"
+                    wiki: "wiki"
                 },
 
-                editForm: {
-                    readOnly: true,
-                    photoBinding: "img"
-                },
+            editForm: {
+                readOnly: true,
+                photoBinding: "img",
+            
+                buttons: {
+                    wiki: {
+                        icon: OrgChart.icon.link,
+                        text: "Wikipedia",
+                        onClick: function (nodeId) {
+                            const node = chart.get(nodeId);
+                            if (node.wiki) {
+                                window.open(node.wiki, "_blank");
+                            }
+                        }
+                    }
+                }
+            }
 
                 nodeClick: (node) => {
                     showPanel(node);
