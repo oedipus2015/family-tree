@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const chart = new OrgChart(document.getElementById("tree"), {
                 template: "olivia",
-            
+
                 nodeBinding: {
                     field_0: "name",
                     field_1: "title",
@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     img_0: "img",
                     wiki: "wiki"
                 },
-            
-                // ★ ここに入れる！
+
+                // ★ 標準ポップアップを開く
                 nodeClick: OrgChart.action.edit,
-            
+
                 editForm: {
                     readOnly: true,
                     photoBinding: "img",
-            
+
                     buttons: {
                         wiki: {
                             icon: OrgChart.icon.link,
@@ -37,12 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-
-            // ★ ノード内の desc を textarea で表示（あなたが使っていた安定版）
-            OrgChart.templates.olivia.field_2 =
-                '<textarea class="oc-desc" ' +
-                'style="width:100%;height:auto;white-space:pre-wrap;word-break:break-word;' +
-                'border:none;background:transparent;resize:none;" readonly>{val}</textarea>';
+            // ★ ここは削除！ textarea に変えると壊れる
+            // OrgChart.templates.olivia.field_2 = ...
 
             chart.load(nodes);
 
@@ -52,13 +48,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 });
-
-
-// ★ 右パネル表示
-function showPanel(node) {
-
-}
-
-function hidePanel() {
-    document.getElementById("side-panel").classList.add("hidden");
-}
