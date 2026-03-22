@@ -11,8 +11,7 @@
 }
 
 /*imgラベルを消す*/
-#tree .boc-edit-form input[data-binding="img"] + label,
-#tree .boc-edit-form label + input[data-binding="img"] {
+#tree .boc-edit-form .boc-input label.hasval {
     display: none !important;
 }
 
