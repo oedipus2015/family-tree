@@ -11,28 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     field_0: "name",
                     field_1: "title",
                     field_2: "desc",
-                    img_0: "img",
-                    wiki: "wiki"
+                    img_0: "img"
                 },
             
-                editForm: {
-                    readOnly: true,
-                    photoBinding: "img",
-            
-                    buttons: {
-                        wiki: {
-                            icon: OrgChart.icon.link,
-                            text: "Wikipedia",
-                            onClick: function (nodeId) {
-                                const node = chart.get(nodeId);
-                                if (node.wiki) {
-                                    window.open(node.wiki, "_blank");
-                                }
-                            }
-                        }
-                    }
+                nodeClick: (sender, node) => {
+                    showPanel(node);
                 }
             });
+
 
             // ★ ノード内の desc を textarea で表示（あなたが使っていた安定版）
             OrgChart.templates.olivia.field_2 =
@@ -56,8 +42,7 @@ function showPanel(node) {
     document.getElementById("panel-name").textContent = node.name || "";
     document.getElementById("panel-title").textContent = node.title || "";
     document.getElementById("panel-desc").value = node.desc || "";
-        // ★ Wikipedia リンクをセット
-    document.getElementById("panel-wiki").href = node.wiki || "";
+
     document.getElementById("side-panel").classList.remove("hidden");
 }
 
