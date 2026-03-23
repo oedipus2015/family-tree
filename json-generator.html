@@ -57,64 +57,40 @@
   const loadJsonBtn = document.getElementById("loadJsonBtn");
   const jsonFileInput = document.getElementById("jsonFileInput");
 
-  /* ★★★ 句読点＋22文字ハイブリッド段落分け ★★★ */
-  function autoParagraphHybrid(str, maxLength = 22) {
-    const sentences = str.split(/(?<=。)/); // 「。」で区切る（句点を残す）
+  function createRow(defaults = {}) {
+    const tr = document.createElement("tr");
+    const fields = ["id", "pid", "name", "title", "desc", "img"];
 
-    const result = sentences.map(sentence => {
-      sentence = sentence.trim();
-      if (sentence.length === 0) return "";
-
-      let wrapped = "";
-      let count = 0;
-
-      for (let i = 0; i < sentence.length; i++) {
-        wrapped += sentence[i];
-        count++;
-
-        if (count >= maxLength) {
-          wrapped += "\n";  // 文中の折り返し
-          count = 0;
-        }
-      }
-
-      return wrapped;
+    fields.forEach(field => {
+      const td = document.createElement("td");
+      let el;
+      if (field === "desc") el = document.createElement("textarea");
+      else { el = document.createElement("input"); el.type = "text"; }
+      el.value = defaults[field] ?? "";
+      el.dataset.field = field;
+      td.appendChild(el);
+      tr.appendChild(td);
     });
 
-    return result.join("\n"); // 文ごとに段落
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("seiwa-genji.json")
+        .then(res => res.json())
+        .then(data => {
+          tbody.innerHTML = "";
+          data.forEach(item => createRow(item));
+        })
+        .catch(err => console.error("JSON 読み込みエラー:", err));
+    });
+
+    const tdDel = document.createElement("td");
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "削除";
+    delBtn.onclick = () => tr.remove();
+    tdDel.appendChild(delBtn);
+    tr.appendChild(tdDel);
+
+    tbody.appendChild(tr);
   }
-
-function createRow(defaults = {}) {
-  const tr = document.createElement("tr");
-  const fields = ["id", "pid", "name", "title", "desc", "img"];
-
-  fields.forEach(field => {
-    const td = document.createElement("td");
-    let el;
-
-    if (field === "desc") {
-      el = document.createElement("textarea");
-      el.maxLength = 22;   // ★ desc は22文字まで！
-    } else {
-      el = document.createElement("input");
-      el.type = "text";
-    }
-
-    el.value = defaults[field] ?? "";
-    el.dataset.field = field;
-    td.appendChild(el);
-    tr.appendChild(td);
-  });
-
-  const tdDel = document.createElement("td");
-  const delBtn = document.createElement("button");
-  delBtn.textContent = "削除";
-  delBtn.onclick = () => tr.remove();
-  tdDel.appendChild(delBtn);
-  tr.appendChild(tdDel);
-
-  tbody.appendChild(tr);
-}
 
   addRowBtn.onclick = () => createRow();
 
@@ -134,7 +110,7 @@ function createRow(defaults = {}) {
         pid: obj.pid ? Number(obj.pid) : null,
         name: obj.name || "",
         title: obj.title || "",
-        desc: autoParagraphHybrid(obj.desc || "", 22),  // ← ★ここでハイブリッド適用！
+        desc: obj.desc || "",
         img: obj.img || ""
       };
     });
