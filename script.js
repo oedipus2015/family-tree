@@ -1,18 +1,20 @@
+// JSON を読み込む
 fetch("seiwa-genji.json")
   .then(res => res.json())
   .then(data => {
-    const container = document.getElementById("timeline");
+    const container = document.getElementById("cards");
 
     data.forEach(person => {
-      const div = document.createElement("div");
-      div.className = "item";
+      const card = document.createElement("div");
+      card.className = "card";
 
-      div.innerHTML = `
+      card.innerHTML = `
+        <img src="${person.img}">
         <h3>${person.name}</h3>
         <p>${person.title}</p>
         <a href="${person.wiki}" target="_blank">Wikipedia</a>
       `;
 
-      container.appendChild(div);
+      container.appendChild(card);
     });
   });
