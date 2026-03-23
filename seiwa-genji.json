@@ -1,17 +1,58 @@
 [
   {
     "id": 1,
+    "pid": null,
     "name": "清和天皇",
-    "pid": null
+    "title": "56代天皇",
+    "desc": "にゃああああああ🐾",
+    "img": "img/Emperor_Seiwa.jpg"
   },
   {
     "id": 2,
-    "name": "源経基",
-    "pid": 1
+    "pid": 1,
+    "name": "陽成天皇",
+    "title": "清和天皇の第一皇子",
+    "desc": "",
+    "img": "img/dummy.png"
   },
   {
     "id": 3,
+    "pid": 1,
+    "name": "貞純親王",
+    "title": "平安時代前期の皇族。清和天皇の第六皇子",
+    "desc": "",
+    "img": "img/dummy.png"
+  },
+  {
+    "id": 4,
+    "pid": 3,
+    "name": "源経基",
+    "title": "平安時代初期の皇族。武官。",
+    "desc": "",
+    "img": "img/Minamoto_no_Tsunemoto.jpg"
+  },
+  {
+    "id": 5,
+    "pid": 4,
     "name": "源満仲",
-    "pid": 2
+    "title": "嵯峨源氏、多田源氏の祖。",
+    "desc": "",
+    "img": "img/源満仲.jpg"
+  },
+  {
+    "id": 6,
+    "pid": 4,
+    "name": "源満政",
+    "title": "平安時代初期の武将。源経基の次男",
+    "desc": "",
+    "img": "img/dummy.png"
+  },
+  {
+    "id": 7,
+    "pid": 5,
+    "name": "源頼光",
+    "title": "平安時代初期の武将。源満仲の四男で摂津国を形成した摂津...",
+    "desc": "",
+    "img": "img/Minamoto_Yorimitsu.jpg"
   }
 ]
