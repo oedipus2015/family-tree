@@ -36,8 +36,9 @@ h1 {
 }
 
 .item img {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  max-width: 200px;   /* ← 追加：画像の最大幅 */
+  max-height: 200px;  /* ← 追加：画像の最大高さ */
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
