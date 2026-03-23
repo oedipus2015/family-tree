@@ -24,7 +24,7 @@ function drawTree(data) {
   const height = window.innerHeight;
 
   const root = d3.hierarchy(data);
-  const treeLayout = d3.tree().size([width - 200, height - 200]);
+  const treeLayout = d3.tree().nodeSize([120, 80]);
   treeLayout(root);
 
   // 線
