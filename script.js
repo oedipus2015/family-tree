@@ -3,7 +3,11 @@ const width = 1000;
 const dx = 20;
 const dy = 200;
 
-const tree = d3.tree().nodeSize([dx, dy]);
+const tree = d3.tree().nodeSize([40, 200]);
+
+const diagonal = d3.linkVertical()
+  .x(d => d.x)
+  .y(d => d.y);
 
 const diagonal = d3.linkHorizontal()
   .x(d => d.y)
