@@ -24,7 +24,7 @@ function drawTree(data) {
   const height = window.innerHeight;
 
   const root = d3.hierarchy(data);
-  const treeLayout = d3.tree().size([width - 100, height - 100]);
+  const treeLayout = d3.tree().size([width - 200, height - 200]);
   treeLayout(root);
 
   // 線
@@ -36,27 +36,55 @@ function drawTree(data) {
     .attr("y1", d => d.source.y)
     .attr("x2", d => d.target.x)
     .attr("y2", d => d.target.y)
-    .attr("stroke", "#000");
+    .attr("stroke", "#555");
 
-  // ノード
-  svg.selectAll("rect")
+  // ノードグループ
+  const node = svg.selectAll("g")
     .data(root.descendants())
     .enter()
-    .append("rect")
-    .attr("x", d => d.x - 50)
-    .attr("y", d => d.y - 20)
-    .attr("width", 100)
-    .attr("height", 40)
+    .append("g")
+    .attr("transform", d => `translate(${d.x - 60}, ${d.y - 40})`);
+
+  // ノード背景
+  node.append("rect")
+    .attr("width", 120)
+    .attr("height", 80)
+    .attr("rx", 10)
     .attr("fill", "#fff")
-    .attr("stroke", "#000");
+    .attr("stroke", "#333");
 
-  // テキスト
-  svg.selectAll("text")
-    .data(root.descendants())
-    .enter()
-    .append("text")
-    .attr("x", d => d.x)
-    .attr("y", d => d.y + 5)
-    .attr("text-anchor", "middle")
+  // 画像
+  node.append("image")
+    .attr("href", d => d.data.img)
+    .attr("x", 5)
+    .attr("y", 5)
+    .attr("width", 40)
+    .attr("height", 40);
+
+  // 名前
+  node.append("text")
+    .attr("x", 55)
+    .attr("y", 25)
+    .attr("font-size", "14px")
     .text(d => d.data.name);
+
+  // タイトル
+  node.append("text")
+    .attr("x", 55)
+    .attr("y", 45)
+    .attr("font-size", "12px")
+    .attr("fill", "#555")
+    .text(d => d.data.title);
+
+  // Wikipedia ボタン
+  node.append("text")
+    .attr("x", 55)
+    .attr("y", 65)
+    .attr("font-size", "12px")
+    .attr("fill", "blue")
+    .style("cursor", "pointer")
+    .text("Wikipedia")
+    .on("click", (e, d) => {
+      window.open(d.data.wiki, "_blank");
+    });
 }
