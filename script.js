@@ -110,7 +110,7 @@ function update(source, svg) {
   // ★ 縦ツリー用 transform
   nodeUpdate.transition()
     .duration(300)
-    .attr("transform", d => `translate(${d.x},${d.y})`);
+  .attr("transform", d => `translate(${d.y},${d.x})`)
 
   let link = svg.selectAll("path.link")
     .data(links, d => d.target.id);
