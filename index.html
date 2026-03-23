@@ -9,19 +9,21 @@
 
   <!-- カスタムテンプレート定義 -->
   <script>
-    // base を継承したカスタムテンプレート
     FamilyTree.templates.custom = Object.assign({}, FamilyTree.templates.base);
-
-    // ノードサイズ
+  
     FamilyTree.templates.custom.size = [200, 80];
-
-    // ノード背景
+  
     FamilyTree.templates.custom.node =
       '<rect x="0" y="0" width="200" height="80" fill="#fff" stroke="#000"></rect>';
-
-    // 名前表示
+  
     FamilyTree.templates.custom.field_0 =
       '<text x="10" y="45" font-size="16">{val}</text>';
+  
+    /* ← これが無いと縦にならない */
+    FamilyTree.templates.custom.link =
+      '<path stroke="#000" stroke-width="1" fill="none" d="{val}"/>';
+  
+    FamilyTree.templates.custom.min = [20, 20];
   </script>
 
   <style>
