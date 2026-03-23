@@ -2,13 +2,27 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>家系図（Wikipediaリンク付き）</title>
+  <title>カスタム家系図テスト</title>
 
-  <!-- あなたの familytree.js（テンプレート無し版） -->
+  <!-- FamilyTree 本体 -->
   <script src="familytree.js"></script>
 
-  <!-- 私が作った Olivia テンプレート -->
-  <script src="olivia.js"></script>
+  <!-- カスタムテンプレート定義 -->
+  <script>
+    // base を継承したカスタムテンプレート
+    FamilyTree.templates.custom = Object.assign({}, FamilyTree.templates.base);
+
+    // ノードサイズ
+    FamilyTree.templates.custom.size = [200, 80];
+
+    // ノード背景
+    FamilyTree.templates.custom.node =
+      '<rect x="0" y="0" width="200" height="80" fill="#fff" stroke="#000"></rect>';
+
+    // 名前表示
+    FamilyTree.templates.custom.field_0 =
+      '<text x="10" y="45" font-size="16">{val}</text>';
+  </script>
 
   <style>
     body {
@@ -22,11 +36,9 @@
   </style>
 </head>
 <body>
+  <div id="tree"></div>
 
-<div id="tree"></div>
-
-<!-- 分離した script.js を読み込む -->
-<script src="script.js"></script>
-
+  <!-- 家系図描画スクリプト -->
+  <script src="script.js"></script>
 </body>
 </html>
