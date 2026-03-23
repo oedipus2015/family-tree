@@ -1,7 +1,7 @@
 // FamilyTree を custom テンプレートで初期化
 const chart = new FamilyTree(document.getElementById("tree"), {
     template: "custom",
-    orientation: "vertical",
+    mode: "tree",
     nodeBinding: {
         field_0: "name"
     }
