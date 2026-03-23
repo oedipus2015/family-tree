@@ -9,10 +9,6 @@ const diagonal = d3.linkVertical()
   .x(d => d.x)
   .y(d => d.y);
 
-const diagonal = d3.linkHorizontal()
-  .x(d => d.y)
-  .y(d => d.x);
-
 let i = 0;
 let root;
 
