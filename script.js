@@ -95,8 +95,13 @@ function update(source, svg) {
       update(d, svg);
     });
 
-  nodeEnter.append("circle")
-    .attr("r", 6);
+  nodeEnter.append("image")
+    .attr("class", "node-image")
+    .attr("href", d => d.data.img || "img/dummy.png")
+    .attr("x", -20)
+    .attr("y", -20)
+    .attr("width", 40)
+    .attr("height", 40);
 
   nodeEnter.append("text")
     .attr("dy", "0.31em")
